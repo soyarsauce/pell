@@ -170,12 +170,13 @@ var init = function init(settings) {
   var content = settings.element.content = createElement('div');
   content.contentEditable = true;
   content.className = classes.content;
-  content.oninput = function (_ref) {
+  var inputEventType = /Trident/.test(navigator.userAgent) ? 'textinput' : 'input';
+  content.addEventListener(inputEventType, function (_ref) {
     var firstChild = _ref.target.firstChild;
 
     if (firstChild && firstChild.nodeType === 3) exec(formatBlock, '<' + defaultParagraphSeparator + '>');else if (content.innerHTML === '<br>') content.innerHTML = '';
     settings.onChange(content.innerHTML);
-  };
+  });
   content.onkeydown = function (event) {
     if (event.key === 'Enter' && queryCommandValue(formatBlock) === 'blockquote') {
       setTimeout(function () {

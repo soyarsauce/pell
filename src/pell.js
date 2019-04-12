@@ -120,11 +120,12 @@ export const init = settings => {
   const content = settings.element.content = createElement('div')
   content.contentEditable = true
   content.className = classes.content
-  content.oninput = ({ target: { firstChild } }) => {
+  const inputEventType = /Trident/.test(navigator.userAgent) ? 'textinput' : 'input'
+  content.addEventListener(inputEventType, ({ target: { firstChild } }) => {
     if (firstChild && firstChild.nodeType === 3) exec(formatBlock, `<${defaultParagraphSeparator}>`)
     else if (content.innerHTML === '<br>') content.innerHTML = ''
     settings.onChange(content.innerHTML)
-  }
+  })  
   content.onkeydown = event => {
     if (event.key === 'Enter' && queryCommandValue(formatBlock) === 'blockquote') {
       setTimeout(() => exec(formatBlock, `<${defaultParagraphSeparator}>`), 0)
