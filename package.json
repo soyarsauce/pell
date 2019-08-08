@@ -1,8 +1,8 @@
 {
-  "name": "pell",
+  "name": "terriajs-pell",
   "description": "pell - the simplest and smallest WYSIWYG text editor for web, with no dependencies",
   "author": "Jared Reich",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "./dist/pell.min.js",
   "scripts": {
     "dev": "gulp",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaredreich/pell.git"
+    "url": "git+https://github.com/TerriaJS/pell.git"
   },
   "keywords": [
     "text editor",
